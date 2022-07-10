@@ -175,15 +175,8 @@
           <button class="jokebtn">Get a Dad Joke</button>
         </div>
       </section>
-    </div>
+</div>
 
-    <div class="container">
-        <div class="yomama">
-            <p> </p>
-        </div>
-        <button class="yomamaBtn"> Get a Yo mama joke</button>
-
-    </div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -195,13 +188,9 @@
         <script>
             const button = document.querySelector(".container2 button");
             const jokeDiv = document.querySelector(".container2 .joke p");
-            const yomamaDiv = document.querySelector(".yomama p");
-            const yobtn = document.querySelector(".yomamaBtn");
 
             document.addEventListener("DOMContentLoaded", getJock);
-            document.addEventListener("DOMContentLoaded", getYomama);
 
-            yomamaBtn.addEventListener("click", getYomama);
             
             button.addEventListener("click", getJock);
             
@@ -215,17 +204,6 @@
               jokeDiv.innerHTML = jokeObj.joke;
               console.log(jokeData);
             }
-            async function getYomama(){
-                const yomamaData = await fetch("https://yomomma-api.herokuapp.com/jokes",{
-                headers: {
-                  Accept: "application/json"
-                }
-                });
-                const yomamaObj = await yomamaData.json();
-                yomamaDiv.innerHTML = yomamaObj.jokes;
-                console.log(yomamaData);
-            }
-
 
 
 
