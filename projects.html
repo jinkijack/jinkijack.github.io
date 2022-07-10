@@ -100,6 +100,10 @@
         <button action="https://yomomma-api.herokuapp.com/jokes" method="GET" >Get a Yo mama joke</button>
     </div>
 
+    <div class="container">
+        <textarea name="text_joke" id="text_joke" cols="30" rows="10"></textarea>
+    </div>
+
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -107,6 +111,34 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
+        <script>
+            const api_url = 'https://yomomma-api.herokuapp.com/jokes';
+            async function getapi(url) {
+    
+                // Storing response
+                const response = await fetch(url);
+                
+                // Storing data in form of JSON
+                var data = await response.json();
+                console.log(data);
+                if (response) {
+                    hideloader();
+                }
+                show(data);
+            }
+            getapi(api_url);
+
+            
+            function hideloader() {
+                var loader = document.getElementById('loader');
+                loader.style.display = 'none';
+            }
+            function show(data) {
+                var joke = data.joke;
+                var joke_div = document.getElementById('text_joke');
+                joke_div.innerHTML = joke;
+            }
+        </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
