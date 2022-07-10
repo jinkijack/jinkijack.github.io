@@ -113,39 +113,21 @@
 
         
         <script>
-            const api_url = 'https://yomomma-api.herokuapp.com/jokes';
 
-            const options = {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json',
-                }
-            }
-            async function getapi(url) {
-    
-                // Storing response
-                const response = await fetch(url, options);
-                
-                // Storing data in form of JSON
-                var data = await response.json();
-                console.log(data);
-                if (response) {
-                    hideloader();
-                }
-                show(data);
-            }
-            getapi(api_url);
+    const options = {
+     method: 'GET',
+     url: 'https://yomomma-api.herokuapp.com/jokes',
+    headers: {
+        'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36'
+  }
+};
 
-            
-            function hideloader() {
-                var loader = document.getElementById('loader');
-                loader.style.display = 'none';
-            }
-            function show(data) {
-                var joke = data.joke;
-                var joke_div = document.getElementById('text_joke');
-                joke_div.innerHTML = joke;
-            }
+request(options).then(function (response) {
+	console.log(response.data);
+}).catch(function (error) {
+	console.error(error);
+});
+document.getElementById("text_joke").innerHTML = response.data;
         </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
